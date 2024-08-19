@@ -20,7 +20,6 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public List<Tag> getListTag() {
-        // TODO Auto-generated method stub
         return tagRepository.findAll(Sort.by("id").descending());
     }
 
@@ -35,8 +34,6 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public Tag updateTag(long id, CreateTagRequest request) {
-        // TODO Auto-generated method stub
-
         Tag tag = tagRepository.findById(id).orElseThrow(()-> new NotFoundException("Not Foud Tag"));
         tag.setName(request.getName());
         tagRepository.save(tag);
@@ -45,7 +42,6 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public void deleleTag(long id) {
-        // TODO Auto-generated method stub
         Tag tag = tagRepository.findById(id).orElseThrow(()-> new NotFoundException("Not Foud Tag"));
         tagRepository.delete(tag);
     }

@@ -21,34 +21,46 @@ export class LoginPageComponent implements OnInit {
   roles: string[] = [];
   errorMessage = '';
 
-  loginForm : any = {
-    username : null,
-    password : null
+  loginForm: any = {
+    username: null,
+    password: null
   }
 
-  registerForm : any = {
+  registerForm: any = {
     username: null,
     email: null,
     password: null
   }
 
-  constructor(private authService:AuthService,private storageService: StorageService,private messageService:MessageService,private router:Router){}
+  constructor(private authService: AuthService, private storageService: StorageService, private messageService: MessageService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  login():void{
-    const {username,password} = this.loginForm;
+  login(): void {
+    const { username, password } = this.loginForm;
     console.log(this.loginForm);
-    this.authService.login(username,password).subscribe({
-      next: res =>{
+    this.authService.login(username, password).subscribe({
+      next: res => {
         this.storageService.saveUser(res);
         this.isLoggedIn = true;
         this.isLoginFailed = false;
         this.roles = this.storageService.getUser().roles;
+
+        // Kiểm tra xem mảng roles có chứa role "ROLE_ADMIN" không
+        if (this.roles.includes("ROLE_ADMIN")) {
+          // Thực hiện hành động nào đó khi roles chứa role "ROLE_ADMIN"
+          console.log("User là admin, thực hiện hành động cho admin");
+          this.router.navigate(['/admin']);
+        } else {
+          // Thực hiện hành động khác khi roles không chứa role "ROLE_ADMIN"
+          console.log("User không phải là admin, thực hiện hành động cho người dùng khác");
+          this.router.navigate(['/']);
+        }
+
         this.showSuccess("Đăng nhập thành công!!");
-        this.router.navigate(['/']);
-      },error: err =>{
+        
+      }, error: err => {
         console.log(err);
         this.isLoggedIn = false;
         this.isLoginFailed = true;
@@ -56,18 +68,18 @@ export class LoginPageComponent implements OnInit {
     })
   }
 
-  register():void{
-    const {username,email,password} = this.registerForm;
+  register(): void {
+    const { username, email, password } = this.registerForm;
     console.log(this.registerForm);
-    this.authService.register(username,email,password).subscribe({
-      next: res =>{
+    this.authService.register(username, email, password).subscribe({
+      next: res => {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
         this.showSuccess("Đăng ký thành công")
         this.loginForm.username = username;
         this.loginForm.password = password;
         this.login();
-      },error: err =>{
+      }, error: err => {
         this.showError(err.message);
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
@@ -75,23 +87,24 @@ export class LoginPageComponent implements OnInit {
     })
   }
 
-  loginFormChange(){
+  loginFormChange() {
     document.getElementById('container')?.classList.remove("right-panel-active");
   }
-  registerFormChange(){
+  registerFormChange() {
     document.getElementById('container')?.classList.add("right-panel-active");
   }
-  
+
 
   showSuccess(text: string) {
-    this.messageService.add({severity:'success', summary: 'Success', detail: text});
+    this.messageService.add({ severity: 'success', summary: 'Thành công', detail: text });
   }
+
   showError(text: string) {
-    this.messageService.add({severity:'error', summary: 'Error', detail: text});
+    this.messageService.add({ severity: 'error', summary: 'Thất bại', detail: text });
   }
 
   showWarn(text: string) {
-    this.messageService.add({severity:'warn', summary: 'Warn', detail: text});
+    this.messageService.add({ severity: 'warn', summary: 'Cảnh báo', detail: text });
   }
 
 }

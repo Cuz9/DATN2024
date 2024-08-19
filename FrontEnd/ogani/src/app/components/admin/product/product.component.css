@@ -1,0 +1,14 @@
+.badge-container {
+  display: inline-block;
+  margin-left: 5px; /* Thêm margin để tạo khoảng cách giữa hình ảnh và badge */
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute-top {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

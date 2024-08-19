@@ -1,20 +1,21 @@
-
 <p-toast></p-toast>
 
-<p-dialog [(visible)]="authModal" [style]="{width: '30vw'}"  [baseZIndex]="10000" [modal]="true" [dismissableMask]="true">
+<!-- Phần đăng nhập -->
+<p-dialog [(visible)]="authModal" [style]="{width: '30vw'}" [baseZIndex]="10000" [modal]="true"
+    [dismissableMask]="true">
     <p-tabView>
         <p-tabPanel header="Đăng nhập">
             <div class="p-field">
                 <label for="username">Tên đăng nhập: </label>
                 <input type="text" pInputText class="w-full" [(ngModel)]="loginForm.username" name="username">
-              </div>
-              <div class="p-field">
+            </div>
+            <div class="p-field">
                 <label for="password">Mật khẩu: </label>
                 <input type="password" pPassword class="w-full" [(ngModel)]="loginForm.password" name="password">
-              </div>
-              <div class="p-field mt-3">
+            </div>
+            <div class="p-field mt-3">
                 <button type="submit" pButton (click)="login()">Đăng nhập</button>
-              </div>
+            </div>
         </p-tabPanel>
         <p-tabPanel header="Đăng ký">
             <form action="">
@@ -28,18 +29,18 @@
                 </div>
                 <div class="p-field">
                     <label for="password">Mật khẩu: </label>
-                    <input type="password" pPassword  class="w-full" [(ngModel)]="registerForm.password" name="password">
+                    <input type="password" pPassword class="w-full" [(ngModel)]="registerForm.password" name="password">
                 </div>
                 <div class="p-field mt-3">
                     <button type="submit" pButton (click)="register()">Đăng ký</button>
                 </div>
-              </form>
+            </form>
         </p-tabPanel>
     </p-tabView>
 </p-dialog>
 
 
-
+<!-- Phần header -->
 <header class="header">
     <div class="header__top">
         <div class="container">
@@ -47,110 +48,157 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                            <li>Free Shipping for all Order of $99</li>
+                            <li><i class="fa fa-envelope"></i> phanlananh454&#64;gmail.com</li>
+                            <li>Freeship toàn bộ đơn hàng trị giá hơn 2.000.000 VND</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="javascript:void(0)" routerLink="/" ><img src="assets/image/logo.png" alt=""></a>
+                    <a href="javascript:void(0)" routerLink="/"><img src="assets/image/logo.jpg" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="javascript:void(0)">Home</a></li>
-                        <li><a href="javascript:void(0)" routerLink="/">Shop</a></li>
-                        <li><a href="javascript:void(0)">Pages</a>
-                            <ul class="header__menu__dropdown">
-                                <li><a href="javascript:void(0)">Shop Details</a></li>
-                                <li><a href="javascript:void(0)">Shoping Cart</a></li>
-                                <li><a href="javascript:void(0)">Check Out</a></li>
-                                <li><a href="javascript:void(0)">Blog Details</a></li>
-                            </ul>
+                        <li [class.active]="navService.activeItem === 'home'"><a href="javascript:void(0)"
+                                routerLink="/" (click)="navService.activeItem = 'home'">Trang chủ</a></li>
+                        <li [class.active]="navService.activeItem === 'shop'"><a href="javascript:void(0)"
+                                routerLink="/shop" (click)="navService.activeItem = 'shop'">Cửa hàng</a>
+                            <!-- <ul class="header__menu__dropdown">
+                                <li><a href="javascript:void(0)">Chi tiết</a></li>
+                                <li><a href="javascript:void(0)">Giỏ hàng</a></li>
+                                <li><a href="javascript:void(0)">Thanh toán</a></li>
+                            </ul> -->
                         </li>
-                        <li><a href="javascript:void(0)" routerLink="/blog">Blog</a></li>
-                        <li><a href="javascript:void(0)" routerLink="/contact">Contact</a></li>
+                        <li [class.active]="navService.activeItem === 'blog'"><a href="javascript:void(0)"
+                                routerLink="/blog" (click)="navService.activeItem = 'blog'">Blog</a></li>
+                        <li [class.active]="navService.activeItem === 'contact'"><a href="javascript:void(0)"
+                                routerLink="/contact" (click)="navService.activeItem = 'contact'">Liên hệ</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="javascript:void(0)" (click)="wishlist.toggle($event)"><fa-icon [icon]="heart"></fa-icon> <span>{{wishlistService.items.length}}</span></a></li>
+                        <li><a href="javascript:void(0)" (click)="wishlist.toggle($event)"><fa-icon
+                                    [icon]="heart"></fa-icon> <span>{{wishlistService.items.length}}</span></a></li>
                         <p-overlayPanel #wishlist>
                             <ng-template pTemplate>
                                 <div class="listItemInCart">
                                     <ul>
                                         <li *ngFor="let product of wishlistService.items" class="cart-box">
                                             <div class="cart-box-image p-2">
-                                                <a href="javascript:void(0)" class="block"><img src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="" width="80px"></a>
+                                                <a href="javascript:void(0)" class="block"><img
+                                                        src="{{'data:image/jpg;base64,' + product.images[0].data}}"
+                                                        alt="" width="80px"></a>
                                             </div>
                                             <div class="cart-box-text">
                                                 <a href="javascript:void(0)">{{product.name}}</a>
                                             </div>
-                                            <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text" (click)="removeWishList(product)"></button>
+                                            <button pButton pRipple type="button" icon="pi pi-times"
+                                                class="p-button-rounded p-button-danger p-button-text"
+                                                (click)="removeWishList(product)"></button>
                                         </li>
-                                    </ul>   
+                                    </ul>
                                 </div>
                             </ng-template>
                         </p-overlayPanel>
-                        <li><a href="javascript:void(0)" (click)="cart.toggle($event)"><fa-icon [icon]="bag"></fa-icon> <span>{{cartService.items.length}}</span></a></li>
+                        <li><a href="javascript:void(0)" (click)="cart.toggle($event)"><fa-icon [icon]="bag"></fa-icon>
+                                <span>{{cartService.items.length}}</span></a></li>
                         <p-overlayPanel #cart>
                             <ng-template pTemplate>
                                 <div class="listItemInCart">
                                     <ul>
                                         <li *ngFor="let product of cartService.items" class="cart-box">
                                             <div class="cart-box-image p-2">
-                                                <a href="javascript:void(0)" class="block"><img src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="" width="80px"></a>
+                                                <a href="javascript:void(0)" class="block"><img
+                                                        src="{{'data:image/jpg;base64,' + product.images[0].data}}"
+                                                        alt="" width="80px"></a>
                                             </div>
                                             <div class="cart-box-text">
                                                 <a href="javascript:void(0)">{{product.name}}</a>
-                                                <div><span>{{product.quantity}} x </span>{{product.price | currency}}</div>
+                                                <div><span>{{product.quantity}} x </span>{{product.price |
+                                                    currency:'VND':'symbol-narrow'}} </div>
                                             </div>
-                                            <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text" (click)="removeFromCart(product)"></button>
+                                            <button pButton pRipple type="button" icon="pi pi-times"
+                                                class="p-button-rounded p-button-danger p-button-text"
+                                                (click)="removeFromCart(product)"></button>
                                         </li>
                                     </ul>
                                     <p-divider></p-divider>
                                     <div class="text-center">
-                                        <strong>Tổng: </strong><span class="ml-2">{{cartService.getTotalPrice() | currency}}</span>
+                                        <strong>Tổng: </strong><span class="ml-2">{{cartService.getTotalPrice() |
+                                            currency:'VND':'symbol-narrow'}}</span>
                                     </div>
                                     <p-divider></p-divider>
                                     <div class="cart-button">
-                                        <button pButton pRipple label="GO TO CART" class="w-full p-button-warning" routerLink="cart"></button>
-                                    </div>   
+                                        <button pButton pRipple label="Thanh toán" class="w-full p-button-warning"
+                                            routerLink="cart"></button>
+                                    </div>
                                 </div>
                             </ng-template>
                         </p-overlayPanel>
-                        <li>
-                            <a href="javascript:void(0)" (click)="showAuthForm()" *ngIf="!isLoggedIn"><fa-icon [icon]="userIcon"></fa-icon></a>
-                            <a href="javascript:void(0)" (click)="profile.toggle($event)" *ngIf="isLoggedIn"><fa-icon [icon]="userIcon"></fa-icon></a>
+
+                        <!-- Nếu không phải admin thì hiển thị li này -->
+                        <li *ngIf="!isAdmin">
+                            <a href="javascript:void(0)" (click)="showAuthForm()" *ngIf="!isLoggedIn"><fa-icon
+                                    [icon]="userIcon"></fa-icon></a>
+                            <a href="javascript:void(0)" (click)="profile.toggle($event)" *ngIf="isLoggedIn"><fa-icon
+                                    [icon]="userIcon"></fa-icon></a>
                             <p-overlayPanel #profile>
-                                <div >
-                                    <a class="dropdown-item" href="javascript:void(0)" routerLink="/user" >
-                                        <fa-icon [icon]="userIcon"></fa-icon>   
-                                        Profile
+                                <div>
+                                    <a class="dropdown-item" href="javascript:void(0)" routerLink="/user">
+                                        <fa-icon [icon]="userIcon"></fa-icon>
+                                        Thông tin
                                     </a>
                                     <a class="dropdown-item" href="javascript:void(0)" routerLink="my-order">
-                                        <fa-icon [icon]="bag"></fa-icon>   
-                                        My Orders
+                                        <fa-icon [icon]="bag"></fa-icon>
+                                        Đơn hàng của tôi
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" (click)="logout();profile.toggle($event)" >
+                                    <a class="dropdown-item" (click)="logout(); profile.toggle($event)">
                                         <fa-icon [icon]="logoutIcon"></fa-icon>
-                                        Logout
+                                        Đăng xuất
                                     </a>
                                 </div>
                             </p-overlayPanel>
                         </li>
-                        
 
+                         <!-- Nếu là admin thì hiển thị li này -->
+                        <li *ngIf="isAdmin">
+                            <a href="javascript:void(0)" (click)="showAuthForm()" *ngIf="!isLoggedIn"><fa-icon
+                                    [icon]="userIcon"></fa-icon></a>
+                            <a href="javascript:void(0)" (click)="profile.toggle($event)" *ngIf="isLoggedIn"><fa-icon
+                                    [icon]="userIcon"></fa-icon></a>
+                            <p-overlayPanel #profile>
+                                <div>
+                                    <a class="dropdown-item" href="javascript:void(0)" routerLink="/user">
+                                        <fa-icon [icon]="userIcon"></fa-icon>
+                                        Thông tin
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:void(0)" routerLink="my-order">
+                                        <fa-icon [icon]="bag"></fa-icon>
+                                        Đơn hàng của tôi
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:void(0)" routerLink="admin">
+                                        <fa-icon [icon]="userCog"></fa-icon>
+                                        Trang quản lý
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" (click)="logout(); profile.toggle($event)">
+                                        <fa-icon [icon]="logoutIcon"></fa-icon>
+                                        Đăng xuất
+                                    </a>
+                                </div>
+                            </p-overlayPanel>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -160,17 +208,20 @@
         </div>
     </div>
 </header>
+
+
 <section class="hero">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
                 <div class="hero__categories">
-                    <div class="hero__categories__all" (click)="showDepartmentClick()" >
+                    <div class="hero__categories__all" (click)="showDepartmentClick()">
                         <fa-icon [icon]="bars"></fa-icon>
-                        <span>All departments</span>
+                        <span>Tất cả sản phẩm</span>
                     </div>
                     <ul *ngIf="showDepartment">
-                        <li><a href="javascript:void(0)" *ngFor="let category of listCategoryEnabled" routerLink="category/{{category.id}}">{{category.name}}</a></li>
+                        <li><a href="javascript:void(0)" *ngFor="let category of listCategoryEnabled"
+                                routerLink="category/{{category.id}}">{{category.name}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -179,11 +230,11 @@
                     <div class="hero__search__form">
                         <form action="#">
                             <div class="hero__search__categories">
-                                All Categories
+                                Tất cả danh mục
                                 <span class="arrow_carrot-down"></span>
                             </div>
-                            <input type="text" placeholder="What do yo u need?" [(ngModel)]="keyword" name="keyword">
-                            <button class="site-btn" routerLink="/search/{{keyword}}">SEARCH</button>
+                            <input type="text" placeholder="Bạn cần tìm món gì?" [(ngModel)]="keyword" name="keyword">
+                            <button class="site-btn" routerLink="/search/{{keyword}}">Tìm</button>
                         </form>
                     </div>
                     <div class="hero__search__phone">
@@ -191,12 +242,12 @@
                             <fa-icon [icon]="phone"></fa-icon>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
-                            <span>support 24/7 time</span>
+                            <h5>0393548930</h5>
+                            <span>Hỗ trợ 24/7 time</span>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -208,60 +259,4 @@
 
 
 
-<footer class="footer spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="footer__about">
-                    <div class="footer__about__logo">
-                        <a href="javascript:void(0)"><img src="assets/image/logo.png" alt=""></a>
-                    </div>
-                    <ul>
-                        <li>Address: 60-49 Road 11378 New York</li>
-                        <li>Phone: +65 11.188.888</li>
-                        <li>Email: hello@colorlib.com</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                <div class="footer__widget">
-                    <h6>Useful Links</h6>
-                    <ul>
-                        <li><a href="javascript:void(0)">About Us</a></li>
-                        <li><a href="javascript:void(0)">About Our Shop</a></li>
-                        <li><a href="javascript:void(0)">Secure Shopping</a></li>
-                        <li><a href="javascript:void(0)">Delivery infomation</a></li>
-                        <li><a href="javascript:void(0)">Privacy Policy</a></li>
-                        <li><a href="javascript:void(0)">Our Sitemap</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="javascript:void(0)">Who We Are</a></li>
-                        <li><a href="javascript:void(0)">Our Services</a></li>
-                        <li><a href="javascript:void(0)">Projects</a></li>
-                        <li><a href="javascript:void(0)">Contact</a></li>
-                        <li><a href="javascript:void(0)">Innovation</a></li>
-                        <li><a href="javascript:void(0)">Testimonials</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="footer__widget">
-                    <h6>Join Our Newsletter Now</h6>
-                    <p>Get E-mail updates about our latest shop and special offers.</p>
-                    <form action="#">
-                        <input type="text" placeholder="Enter your mail">
-                        <button type="submit" class="site-btn">Subscribe</button>
-                    </form>
-                    <div class="footer__widget__social">
-                        <a href="javascript:void(0)"><i class="fa fa-facebook"></i></a>
-                        <a href="javascript:void(0)"><i class="fa fa-instagram"></i></a>
-                        <a href="javascript:void(0)"><i class="fa fa-twitter"></i></a>
-                        <a href="javascript:void(0)"><i class="fa fa-pinterest"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-
+<app-footer></app-footer>

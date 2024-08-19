@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.example.ogani.repository.UserRepository;
 import com.example.ogani.security.jwt.AuthEntryPointJwt;
 import com.example.ogani.security.jwt.AuthTokenFilter;
 import com.example.ogani.security.service.UserDetailsServiceImpl;
@@ -24,6 +25,7 @@ import com.example.ogani.security.service.UserDetailsServiceImpl;
 public class WebSecurityConfig {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+
   
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
@@ -67,6 +69,5 @@ public class WebSecurityConfig {
       
       return http.build();
     }
-
 
 }

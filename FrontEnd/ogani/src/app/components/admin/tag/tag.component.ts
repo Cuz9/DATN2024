@@ -58,6 +58,7 @@ export class TagComponent implements OnInit {
     this.tagForm.id = id;
     this.tagForm.name = name;
   }
+
   onDelete(id:number,name : string){
     this.deleteForm = true;
     this.tagForm.id = id;
@@ -94,7 +95,7 @@ export class TagComponent implements OnInit {
     this.tagService.enableTag(id).subscribe({
       next: res =>{
         this.getList();
-        this.showSuccess("Cập nhật thành công!!");
+        this.showSuccess("Thay đổi trạng thái thành công!!");
 
       },error: err=>{
         this.showError(err.message);
@@ -115,18 +116,16 @@ export class TagComponent implements OnInit {
     })
   }
 
-  
-
 
   showSuccess(text: string) {
-    this.messageService.add({severity:'success', summary: 'Success', detail: text});
+    this.messageService.add({severity:'success', summary: 'Thành công', detail: text});
   }
   showError(text: string) {
-    this.messageService.add({severity:'error', summary: 'Error', detail: text});
+    this.messageService.add({severity:'error', summary: 'Thất bại', detail: text});
   }
 
   showWarn(text : string) {
-    this.messageService.add({severity:'warn', summary: 'Warn', detail: text});
+    this.messageService.add({severity:'warn', summary: 'Cảnh báo', detail: text});
   }
 
 }

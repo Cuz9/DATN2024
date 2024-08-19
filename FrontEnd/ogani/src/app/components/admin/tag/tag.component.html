@@ -7,15 +7,15 @@
         </ng-template>
     </p-toolbar>
 
-    <p-dialog header="Tag" [(visible)]="displayForm" [style]="{width: '30vw'}" [modal]="true" [transitionOptions]="'.2s'">
+    <p-dialog header="Danh mục blog" [(visible)]="displayForm" [style]="{width: '30vw'}" [modal]="true" [transitionOptions]="'.2s'">
         <form action="">
             <div class="p-field">
-                <label for="username">Tên Tag: </label>
+                <label for="username">Tên danh mục: </label>
                 <input type="text" pInputText class="w-full mt-2" [(ngModel)]="tagForm.name" name="name">
             </div>
             <div class="p-field mt-3">
                 <button type="submit" pButton (click)="createTag()" *ngIf="!onUpdate" >Tạo mới</button>
-                <button type="submit" pButton *ngIf="onUpdate" >Cập nhật</button>
+                <button type="submit" pButton *ngIf="onUpdate" (click)="updateTag()" >Cập nhật</button>
                 <button pButton type="button" class="p-button-danger ml-3" (click)="displayForm=false">Hủy</button>
             </div>
         </form>
@@ -24,20 +24,21 @@
     <p-table [value]="listTag" [rows]="5" [paginator]="true">
         <ng-template pTemplate="header">
             <tr>
-                <th>Name</th>
-                <th>Enable</th>
-                <th>Action</th>
+                <th>Tên danh mục</th>
+                <th>Trạng thái hoạt động</th>
+                <th>Hành động</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-tag>
             <tr> 
                 <td>{{tag.name}}</td>
                 <td>
-                    <button pButton type="button" class="p-button-info" (click)="enableTag(tag.id)" *ngIf="tag.enable">Enabled</button>
-                    <button pButton type="button" class="p-button-warning" (click)="enableTag(tag.id)" *ngIf="!tag.enable">Disabled</button>
+                    <button pButton type="button" class="p-button-info" (click)="enableTag(tag.id)" *ngIf="tag.enable">Hoạt động</button>
+                    <button pButton type="button" class="p-button-warning" (click)="enableTag(tag.id)" *ngIf="!tag.enable">Không hoạt động</button>
                 </td>
                 <td>
-                    <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-primary"></button>
+                    <button pButton type="button" icon="pi pi-pencil" (click)="onUpdateForm(tag.id,tag.name)" class="p-button-rounded p-button-primary"></button>
+
                     <button pButton type="button" icon="pi pi-trash" (click)="onDelete(tag.id,tag.name)" class="p-button-rounded p-button-danger ml-2"></button>
                     <p-dialog header="Xác nhận" [(visible)]="deleteForm" [style]="{width :'30vw'}" [modal]="true" [transitionOptions]="'.3s'">
                         <div>

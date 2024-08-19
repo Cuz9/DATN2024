@@ -47,7 +47,9 @@ import { UserDetailComponent } from './components/client/user-detail/user-detail
 import { MyOrderComponent } from './components/client/my-order/my-order.component';
 import { SearchComponent } from './components/client/search/search.component';
 import { LoginPageComponent } from './components/client/login-page/login-page.component';
-
+import { FooterComponent } from './components/client/footer/footer.component';
+import { BankingSuccessComponent } from './components/client/banking-success/bankingsuccess.component';
+import { ContactComponent } from './components/client/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,9 @@ import { LoginPageComponent } from './components/client/login-page/login-page.co
     MyOrderComponent,
     SearchComponent,
     LoginPageComponent,
-
+    FooterComponent,
+    BankingSuccessComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +104,8 @@ import { LoginPageComponent } from './components/client/login-page/login-page.co
     PasswordModule,
     SliderModule,
     DataViewModule,
-    MultiSelectModule
+    MultiSelectModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-OganiApplication<ogani>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.ogani.OganiApplication",
+            "projectName": "ogani",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faHeart, faRetweet, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faInfo, faRetweet, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { MessageService } from 'primeng/api';
 import { CartService } from 'src/app/_service/cart.service';
 import { CategoryService } from 'src/app/_service/category.service';
@@ -20,13 +20,14 @@ export class ShopComponent implements OnInit {
   heart = faHeart;
   bag = faShoppingBag;
   retweet = faRetweet;
+  info = faInfo;
 
   id: number = 0;
   listProduct : any;
   listCategory : any;
   listProductNewest : any[] = [];
 
-  rangeValues = [0,100];
+  rangeValues = [0,500000];
 
   constructor(
     private categoryService:CategoryService,
@@ -34,21 +35,34 @@ export class ShopComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public cartService:CartService,
-    public wishlistService:WishlistService){
+    public wishlistService:WishlistService,
+    private messageService: MessageService
+  ){
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
   }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.getListProductByCategory();
+    // this.getListProductByCategory();
+    this.getListProduct();
     this.getListCategoryEnabled();
     this.getNewestProduct();
   }
 
+  getListProduct(){
+    this.productService.getListProduct().subscribe({
+      next: res =>{
+        this.listProduct = res;
+        console.log(this.listProduct);
+      },error: err =>{
+        console.log(err);
+      } 
+    })
+  }
 
-  getListProductByCategory(){
-    this.productService.getListByCategory(this.id).subscribe({
+  getListProductByCategory(categoryId: number){
+    this.productService.getListByCategory(categoryId).subscribe({
       next: res =>{
         this.listProduct = res;
       },error: err =>{
@@ -91,12 +105,26 @@ export class ShopComponent implements OnInit {
   addToCart(item: any){
     this.cartService.getItems();
     this.cartService.addToCart(item,1);
+    this.showSuccess("Đã thêm vào giỏ hàng!")
   }
   
   addToWishList(item: any){
     if(!this.wishlistService.productInWishList(item)){
       this.wishlistService.addToWishList(item);
+      this.showSuccess("Đã vào danh saách yêu thích!")
     }
+  }
+
+  showSuccess(text: string) {
+    this.messageService.add({severity:'success', summary: 'Success', detail: text});
+  }
+
+  showError(text: string) {
+    this.messageService.add({severity:'error', summary: 'Error', detail: text});
+  }
+  
+  showWarn(text: string) {
+    this.messageService.add({severity:'warn', summary: 'Warn', detail: text});
   }
 
 }

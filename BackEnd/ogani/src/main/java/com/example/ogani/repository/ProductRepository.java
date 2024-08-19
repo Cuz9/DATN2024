@@ -29,4 +29,5 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query(value= "Select p from Product p where p.name like %:keyword% order by id desc")
     List<Product> searchProduct(String keyword);
 
+    
 }

@@ -5,8 +5,7 @@
                 <div class="breadcrumb__text">
                     <h2>Blog</h2>
                     <div class="breadcrumb__option">
-                        <a routerLink="/" >Blog</a>
-                        <span>Blog</span>
+                        <span>Nơi chia sẻ kinh nghiệm</span>
                     </div>
                 </div>
             </div>
@@ -22,18 +21,18 @@
                 <div class="blog__sidebar">
                     <div class="blog__sidebar__search">
                         <form action="#">
-                            <input type="text" placeholder="Search...">
+                            <input type="text" placeholder="Tìm kiếm...">
                             <button type="submit"><span class="icon_search"></span></button>
                         </form>
                     </div>
                     <div class="blog__sidebar__item">
-                        <h4>Tags</h4>
+                        <h4>Danh mục</h4>
                         <ul>
                             <li *ngFor="let tag of listTag"><a href="javascript:void(0)">{{tag.name}}</a></li>
                         </ul>
                     </div>
                     <div class="blog__sidebar__item">
-                        <h4>Recent News</h4>
+                        <h4>Tin gần đây</h4>
                         <div class="blog__sidebar__recent">
                             <a href="javascript:void(0)" routerLink="/blog/{{blog.id}}" class="blog__sidebar__recent__item" *ngFor="let blog of listBlogNewest">
                                 <div class="blog__sidebar__recent__item__pic">
@@ -41,7 +40,7 @@
                                 </div>
                                 <div class="blog__sidebar__recent__item__text">
                                     <h6>{{blog.title}}</h6>
-                                    <span>{{blog.createAt}}</span>
+                                    <h6 style="color: crimson; font-size: 14px;">Tác giả: <span>{{blog.user.firstname}}</span></h6>
                                 </div>
                             </a>
                         </div>
@@ -58,13 +57,11 @@
                             </div>
                             <div class="blog__item__text">
                                 <ul>
-                                    <li><i class="fa fa-calendar-o"></i> {{blog.createAt}}</li>
-                                    <li><i class="fa fa-comment-o"></i> 5</li>
+                                    <li class="text-red-700 font-bold"><i class="fa fa-calendar-o"></i> {{blog.title}}</li>
                                 </ul>
-                                <h5><a href="javascript:void(0)" routerLink="/blog/{{blog.id}}">{{blog.description}}</a></h5>
-                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                    quaerat </p>
-                                <a href="javascript:void(0)" routerLink="/blog/{{blog.id}}" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+                                <h5 style="" class="text-black"><a href="javascript:void(0)" routerLink="/blog/{{blog.id}}">{{blog.description}}</a></h5>
+                               
+                                <a href="javascript:void(0)" routerLink="/blog/{{blog.id}}" class="blog__btn">Đọc thêm<span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>

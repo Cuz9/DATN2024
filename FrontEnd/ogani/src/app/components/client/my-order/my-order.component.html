@@ -4,10 +4,9 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>My Order</h2>
+                    <h2>Đơn hàng của tôi</h2>
                     <div class="breadcrumb__option">
-                        <a routerLink="/" >Home</a>
-                        <span>My Order</span>
+                        <span>Theo dõi đơn hàng</span>
                     </div>
                 </div>
             </div>
@@ -30,29 +29,24 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 4rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
-                <th pSortableColumn="name">Customer <p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="address">Address <p-sortIcon field="address"></p-sortIcon></th>
-                <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
+                <th pSortableColumn="name">Khách hàng <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="address">Địa chỉ <p-sortIcon field="address"></p-sortIcon></th>
+                <th pSortableColumn="phone">Số điện thoại <p-sortIcon field="phone"></p-sortIcon></th>
                 <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
-                <th pSortableColumn="price">Total <p-sortIcon field="price"></p-sortIcon></th>
-                <th style="min-width:10rem">Status</th>
+                <th pSortableColumn="price">Tổng <p-sortIcon field="price"></p-sortIcon></th>
+                <th style="min-width:10rem">Trạng thái</th>
                 <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-order>
             <tr>
-                <td style="width: 4rem">
-                    <p-tableCheckbox [value]="order"></p-tableCheckbox>
-                </td>
+               
                 <td>{{order.firstname}} {{order.lastname}}</td>
                 <td>{{order.address}}</td>
                 <td>{{order.phone}}</td>
                 <td>{{order.email}}</td>
                 <td>{{order.totalPrice}}</td>
-                <td><button pButton type="button" label="Waiting For Delivery" class="p-button-success"></button></td>
+                <td><button pButton type="button" label="Đang chờ giao hàng" class="p-button-success"></button></td>
             </tr>
         </ng-template>
     </p-table>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faBars, faHeart, faPhone, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faBars, faHeart, faPhone, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { CartService } from 'src/app/_service/cart.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class CartComponent {
   bag = faShoppingBag;
   phone = faPhone;
   bars = faBars;
+  arrowRight = faArrowRight;
 
   showDepartment = false;
 

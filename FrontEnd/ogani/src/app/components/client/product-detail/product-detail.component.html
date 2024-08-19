@@ -5,10 +5,9 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>Checkout</h2>
+                    <h2>Thông tin sản phẩm</h2>
                     <div class="breadcrumb__option">
-                        <a routerLink="/" >Home</a>
-                        <span>Checkout</span>
+                        <span>Thanh toán ngay</span>
                     </div>
                 </div>
             </div>
@@ -39,9 +38,9 @@
                         <fa-icon [icon]="star"></fa-icon>
                         <fa-icon [icon]="star"></fa-icon>
                         <fa-icon [icon]="star_half"></fa-icon>
-                        <span>(18 reviews)</span>
+                        <span>(18 đánh giá)</span>
                     </div>
-                    <div class="product__details__price">{{product.price | currency}}</div>
+                    <div class="product__details__price">{{product.price | currency:"VND"}}</div>
                     <p>{{product.description}}</p>
                     <div class="product__details__quantity">
                         <div class="quantity">
@@ -52,17 +51,17 @@
                             </div>
                         </div>
                     </div>
-                    <a href="javascript:void(0)" class="primary-btn" (click)="addCart(product)">ADD TO CARD</a>
+                    <a href="javascript:void(0)" class="primary-btn" (click)="addCart(product)">Thêm vào giỏ hàng</a>
                     <ul>
-                        <li><b>Availability</b> <span>In Stock</span></li>
-                        <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                        <li><b>Weight</b> <span>0.5 kg</span></li>
+                        <li><b>Tình trạng</b> <span>Còn hàng</span></li>
+                        <li><b>Giao hàng</b> <span>01 ngày <samp> Giao hàng miễn phí hôm nay</samp></span></li>
+                        <li><b>Cân nặng</b> <span>0.5 kg</span></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-12">
+            <!-- <div class="col-lg-12">
                 <p-tabView >
-                    <p-tabPanel header="Description">
+                    <p-tabPanel header="Chi tiết">
                         <div class="tab-pane">
                             <div class="product__details__tab__desc">
                                 <h6>Products Infomation</h6>
@@ -87,29 +86,7 @@
                             </div>
                         </div>
                     </p-tabPanel>
-                    <p-tabPanel header="Description">
-                        
-
-                        <div class="tab-pane">
-                            <div class="product__details__tab__desc">
-                                <h6>Products Infomation</h6>
-                                <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                    Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus
-                                    suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam
-                                    vel, ullamcorper sit amet ligula. Proin eget tortor risus.</p>
-                                    <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                    ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                    elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                    porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                    Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed
-                                    porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum
-                                    sed sit amet dui. Proin eget tortor risus.</p>
-                            </div>
-                        </div>
-
-                    </p-tabPanel>
-                    <p-tabPanel header="Reviews (1)">
-
+                    <p-tabPanel header="Đánh giá sản phẩm (1)">
                         <div class="tab-pane">
                             <div class="product__details__tab__desc">
                                 <h6>Products Infomation</h6>
@@ -126,11 +103,9 @@
                                     sed sit amet dui. Proin eget tortor risus.</p>
                             </div>
                         </div>
-                        
                     </p-tabPanel>
                 </p-tabView>
-                
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -141,7 +116,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title related__product__title">
-                    <h2>Related Product</h2>
+                    <h2>Sản phẩm liên quan</h2>
                 </div>
             </div>
         </div>
@@ -151,13 +126,13 @@
                     <div class="featured__item__pic set-bg" [ngStyle]="{'background-image': 'url(data:image/jpeg;base64,'+ product.images[0].data+')'}">
                         <ul class="featured__item__pic__hover">
                             <li><a href="javascript:void(0)" (click)="addToWishList(product)"><fa-icon [icon]="heart"></fa-icon></a></li>
-                            <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}"><fa-icon [icon]="retweet"></fa-icon></a></li>
+                            <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}"><fa-icon [icon]="info"></fa-icon></a></li>
                             <li><a href="javascript:void(0)" (click)="addToCart(product)"><fa-icon [icon]="bag"></fa-icon></a></li>
                         </ul>
                     </div>
                     <div class="featured__item__text">
                         <h6><a href="javascript:void(0)">{{product.name}}</a></h6>
-                        <h5>{{product.price | currency}}</h5>
+                        <h5>{{product.price | currency: "VND"}}</h5>
                     </div>
                 </div>
             </div>

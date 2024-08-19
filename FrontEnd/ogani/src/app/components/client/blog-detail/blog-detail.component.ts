@@ -10,15 +10,20 @@ import { TagService } from 'src/app/_service/tag.service';
 })
 export class BlogDetailComponent implements OnInit {
 
-  listTag : any;
+  listTag: any;
   listBlogNewest: any;
   blog: any;
   id: any;
+  formattedDate: string = '';
 
-
-  constructor(private router: Router,private route: ActivatedRoute,private blogService: BlogService,private tagService: TagService){
+  constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService, private tagService: TagService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-
+    // Tính toán và định dạng ngày
+    const currentDate = new Date();
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const year = currentDate.getFullYear();
+    this.formattedDate = `${day}/${month}/${year}`;
   }
 
   ngOnInit(): void {
@@ -28,33 +33,32 @@ export class BlogDetailComponent implements OnInit {
     this.getListNewest();
   }
 
-
-  getListTag(){
+  getListTag() {
     this.tagService.getListTag().subscribe({
-      next: res =>{
+      next: res => {
         this.listTag = res;
-      },error: err=>{
+      }, error: err => {
         console.log(err);
       }
     })
   }
 
-  getBlog(){
+  getBlog() {
     this.blogService.getBlog(this.id).subscribe({
-      next: res =>{
+      next: res => {
         this.blog = res;
         console.log(this.blog);
-      },error: err=>{
+      }, error: err => {
         console.log(err);
       }
     })
   }
 
-  getListNewest(){
+  getListNewest() {
     this.blogService.getListNewest(3).subscribe({
-      next: res =>{
+      next: res => {
         this.listBlogNewest = res;
-      },error: err=>{
+      }, error: err => {
         console.log(err);
       }
     })

@@ -3,10 +3,9 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>UserDetail</h2>
+                    <h2>Thông tin tài khoản</h2>
                     <div class="breadcrumb__option">
-                        <a routerLink="/" >Home</a>
-                        <span>User</span>
+                        <span>Vui lòng không chia sẻ thông tin cá nhân</span>
                     </div>
                 </div>
             </div>
@@ -14,49 +13,56 @@
     </div>
 </section>
 
-<section class="user mt-5 mb-5">
+<section class="user">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 border-right" *ngIf="user != null">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" 
-                        src="assets/image/author.jpg"><span
-                        class="font-weight-bold">{{user.username}}</span><span class="text-black-50">{{user.email}}</span><span>
-                </span></div>
+            <div class="col-md-4" *ngIf="user != null">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+                        src="assets/image/avatar.jpg"><span class="font-weight-bold">{{user.username}}</span><span
+                        class="text-black-50">{{user.email}}</span><span>
+                    </span></div>
             </div>
-            <div class="col-md-5 border-right">
+            <div class="col-md-8">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
+                        <h4 class="text-right">Cài đặt thông tin</h4>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">First Name</label>
-                            <input type="text" class="form-control" placeholder="First Name" [(ngModel)]="updateForm.firstname" name="firstname">
+                        <div class="col-md-6"><label class="labels">Họ</label>
+                            <input type="text" class="form-control" placeholder="Họ" [(ngModel)]="updateForm.lastname"
+                                name="lastname">
                         </div>
-                        <div class="col-md-6"><label class="labels">Last Name</label>
-                            <input type="text" class="form-control" placeholder="Last Name" [(ngModel)]="updateForm.lastname" name="lastname">
-                            </div>
+                        <div class="col-md-6"><label class="labels">Tên</label>
+                            <input type="text" class="form-control" placeholder="Tên" [(ngModel)]="updateForm.firstname"
+                                name="firstname">
+                        </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">PhoneNumber</label>
-                            <input type="text"  class="form-control" placeholder="Phone Number" [(ngModel)]="updateForm.phone" name="phone">
+                        <div class="col-md-12"><label class="labels">Số điện thoại</label>
+                            <input type="text" class="form-control" placeholder="Số điện thoại"
+                                [(ngModel)]="updateForm.phone" name="phone">
                         </div>
-                        <div class="col-md-12"><label class="labels">Address</label>
-                            <input type="text" class="form-control" placeholder="Address" [(ngModel)]="updateForm.address" name="address">
+                        <div class="col-md-12"><label class="labels">Địa chỉ</label>
+                            <input type="text" class="form-control" placeholder="Địa chỉ"
+                                [(ngModel)]="updateForm.address" name="address">
                         </div>
                         <div class="col-md-12"><label class="labels">Email</label>
-                            <input type="text" class="form-control" placeholder="Email" [(ngModel)]="updateForm.email" name="email">
+                            <input type="text" class="form-control" placeholder="Email" [(ngModel)]="updateForm.email"
+                                name="email">
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">Country</label>
-                            <input type="text" class="form-control" placeholder="country" [(ngModel)]="updateForm.country" name="country">
+                        <div class="col-md-6"><label class="labels">Quốc tịch</label>
+                            <input type="text" class="form-control" placeholder="Quốc tịch"
+                                [(ngModel)]="updateForm.country" name="country">
                         </div>
-                        <div class="col-md-6"><label class="labels">State/Region</label>
-                            <input type="text" class="form-control" placeholder="state" [(ngModel)]="updateForm.state" name="state">
+                        <div class="col-md-6"><label class="labels">Thành phố</label>
+                            <input type="text" class="form-control" placeholder="Thành phố" [(ngModel)]="updateForm.state"
+                                name="state">
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <button class="btn btn-primary profile-button" type="button" (click)="updateProfile()">Save Profile</button>
+                        <button class="btn btn-primary profile-button" type="button" (click)="updateProfile()">Lưu thay đổi</button>
                     </div>
                 </div>
             </div>

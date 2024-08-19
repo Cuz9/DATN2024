@@ -4,14 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.ogani.entity.ERole;
 import com.example.ogani.entity.Role;
 import com.example.ogani.entity.User;
-import com.example.ogani.exception.BadRequestException;
 import com.example.ogani.exception.NotFoundException;
 import com.example.ogani.model.request.ChangePasswordRequest;
 import com.example.ogani.model.request.CreateUserRequest;
@@ -34,7 +32,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(CreateUserRequest request) {
-        // TODO Auto-generated method stub
         User user = new User();
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
@@ -74,14 +71,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUsername(String username) {
-      // TODO Auto-generated method stub
       User user = userRepository.findByUsername(username).orElseThrow(() -> new NotFoundException("Not Found User"));
       return user;
     }
 
     @Override
     public User updateUser(UpdateProfileRequest request) {
-      // TODO Auto-generated method stub
       User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new NotFoundException("Not Found User"));
       user.setFirstname(request.getFirstname());
       user.setLastname(request.getLastname());
@@ -96,7 +91,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void changePassword(ChangePasswordRequest request) {
-      // TODO Auto-generated method stub
       // User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new NotFoundException("Not Found User"));
 
       // if(encoder.encode(request.getOldPassword()) != user.getPassword()){
@@ -105,9 +99,5 @@ public class UserServiceImpl implements UserService {
       // user.setPassword(encoder.encode(request.getNewPassword()));
 
       // userRepository.save(user);
-      
     }
-
-
-    
 }

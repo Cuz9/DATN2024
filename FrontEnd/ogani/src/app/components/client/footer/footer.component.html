@@ -1,0 +1,42 @@
+<footer class="footer spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer__about">
+                    <div class="footer__about__logo">
+                        <a href="javascript:void(0)"><img src="assets/image/logo-nobg.png" alt=""></a>
+                    </div>
+                    <ul>
+                        <li>Địa chỉ: Minh Khai, Bắc Từ Liêm, Hà Nội</li>
+                        <li>Phone: 0393548930</li>
+                        <li>Email: {{ email }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                <div class="footer__widget">
+                    <h6>Liên kết thông dụng</h6>
+                    <ul>
+                        <li *ngFor="let link of usefulLinks"><a href="javascript:void(0)">{{ link }}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="footer__widget">
+                    <h6>{{ newsletterTitle }}</h6>
+                    <p>{{ newsletterDescription }}</p>
+                    <form action="#">
+                        <input type="text" name="email" [(ngModel)]="clientEmail" placeholder="Email của bạn">
+                        <button type="submit" class="site-btn" (click)="sendEmailRegister()">{{ subscribeButton }}</button>
+                    </form>
+                    <div class="footer__widget__social">
+                        <a href="javascript:void(0)"><i class="fa fa-facebook"></i></a>
+                        <a href="javascript:void(0)"><i class="fa fa-instagram"></i></a>
+                        <a href="javascript:void(0)"><i class="fa fa-twitter"></i></a>
+                        <a href="javascript:void(0)"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

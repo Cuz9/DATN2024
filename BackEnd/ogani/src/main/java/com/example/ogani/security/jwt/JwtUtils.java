@@ -10,14 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.util.WebUtils;
 
 import com.example.ogani.security.service.UserDetailsImpl;
 
 import io.jsonwebtoken.*;
 
-@Repository
+@Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 

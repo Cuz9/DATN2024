@@ -29,4 +29,7 @@ public interface ProductService {
 
     void deleteProduct(long id);
 
+    void deleteProductImage(long productId, long imageId);
+
+    void updateProductImages(long productId, List<Long> imageIds); // Thêm phương thức updateProductImages
 }

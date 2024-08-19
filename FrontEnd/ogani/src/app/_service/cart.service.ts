@@ -79,6 +79,14 @@ export class CartService {
     return this.totalPrice;
   }
 
+  calculateTotal(): number {
+    let total = 0;
+    this.items.forEach(item => {
+      total += item.price * item.quantity;
+    });
+    return total;
+  }
+
   remove(item: any){
     const index = this.items.findIndex((o:any) => o.id == item.id);
     if(index > -1){

@@ -14,8 +14,8 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
     
       return new OpenAPI()
-        .info(new Info().title("OGANI REST API DOCUMENT")
-        .contact(new Contact().name("Dương Tuấn Phương").email("duongtuanphuong2@gmail.com").url("https://www.facebook.com/phuong.ef"))
+        .info(new Info().title("ORIKAMARKET REST API DOCUMENT")
+        .contact(new Contact().name("Phan Thị Lan Anh").email("laânnh@gmail.com").url("https://www.facebook.com/lananh"))
         .termsOfService("http://swagger.io/terms/")
         .license(new License().name("Apache 2.0")
         .url("http://springdoc.org")));

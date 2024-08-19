@@ -23,17 +23,17 @@
     <p-table [value]="listCategory" [rows]="5" [paginator]="true">
         <ng-template pTemplate="header">
             <tr>
-                <th>Name</th>
-                <th>Enable</th>
-                <th>Action</th>
+                <th>Tên sản phẩm</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-category>
             <tr> 
                 <td>{{category.name}}</td>
                 <td>
-                    <button pButton type="button" class="p-button-info" (click)="enableCategory(category.id)" *ngIf="category.enable">Enabled</button>
-                    <button pButton type="button" class="p-button-warning" (click)="enableCategory(category.id)" *ngIf="!category.enable">Disabled</button>
+                    <button pButton type="button" class="p-button-info" (click)="enableCategory(category.id)" *ngIf="category.enable">Hoạt động</button>
+                    <button pButton type="button" class="p-button-warning" (click)="enableCategory(category.id)" *ngIf="!category.enable">Ngưng hoạt động</button>
                 </td>
                 <td>
                     <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-primary" (click)="onUpdateForm(category.id,category.name)"></button>

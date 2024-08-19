@@ -14,6 +14,7 @@ export class ProductService {
 
   constructor(private http:HttpClient) { }
   
+  //  Lấy tất cả sản phẩm
   getListProduct():Observable<any>{
     return this.http.get(PRODUCT_API,httpOptions);
   }
@@ -64,5 +65,15 @@ export class ProductService {
     return this.http.delete(PRODUCT_API + 'delete/' + id,httpOptions);
   }
 
+  deleteProductImage(productId: number, imageId: number): Observable<any> {
+    return this.http.delete(`${PRODUCT_API}${productId}/image/${imageId}`, httpOptions);
+  }
 
+
+  updateProductImage(productId: number, imageIds: number[]): Observable<any> {
+    console.log("productId: "+productId);
+    console.log("imageIds: "+imageIds);
+
+    return this.http.put(PRODUCT_API + productId + '/images', imageIds, httpOptions);
+  }
 }

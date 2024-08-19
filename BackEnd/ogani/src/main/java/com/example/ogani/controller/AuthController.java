@@ -1,11 +1,8 @@
 package com.example.ogani.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +46,8 @@ public class AuthController {
     @PostMapping("/login")
     @Operation(summary="Đăng nhập")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
+        System.out.println(loginRequest.getPassword());
+
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
                         loginRequest.getPassword()));

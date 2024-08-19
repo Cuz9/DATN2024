@@ -1,6 +1,5 @@
 package com.example.ogani.entity;
 
-import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
