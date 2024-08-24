@@ -95,7 +95,7 @@
                                     <ul>
                                         <li *ngFor="let product of wishlistService.items" class="cart-box">
                                             <div class="cart-box-image p-2">
-                                                <a href="javascript:void(0)" class="block"><img
+                                                <a href="{{'/product/' + product.id}}" class="block"><img
                                                         src="{{'data:image/jpg;base64,' + product.images[0].data}}"
                                                         alt="" width="80px"></a>
                                             </div>
