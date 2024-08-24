@@ -32,6 +32,8 @@
                 <th pSortableColumn="price">Giá <p-sortIcon field="price"></p-sortIcon></th>
                 <th pSortableColumn="category" >Danh mục <p-sortIcon
                         field="category"></p-sortIcon></th>
+              <th pSortableColumn="quantity" > Số lượng <p-sortIcon
+                field="quantity"></p-sortIcon></th>
                 <th>Hành động</th>
             </tr>
         </ng-template>
@@ -45,6 +47,7 @@
                         class="shadow-4" /></td>
                 <td>{{product.price | currency:'VND'}}</td>
                 <td>{{product.category.name}}</td>
+                <td>{{product.quantity}}</td>
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                         (click)="openUpdate(product)"></button>
@@ -160,7 +163,7 @@
                     <button type="button" pButton icon="pi pi-times" (click)="cancelSelection()" label="Hủy"></button>
                 </footer>
             </p-dialog>
-            
+
 
         </div>
 
