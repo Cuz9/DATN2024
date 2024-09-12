@@ -8,7 +8,7 @@ import { MessageService } from 'primeng/api';
 })
 export class FooterComponent implements OnInit {
   invalidForm: boolean = false;
-  email: string = 'phanlananh454@gmail.com';
+  email: string = 'domanhcuong552002@gmail.com';
   clientEmail: string = '';
   usefulLinks: string[] = [
     'Về chúng tôi',
