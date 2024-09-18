@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.ogani.entity.OrderDetail;
+import com.example.ogani.repository.OrderDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+
     @GetMapping("/")
     @Operation(summary="Lấy ra danh sách đặt hàng")
     public ResponseEntity<List<Order>> getList(){
@@ -47,6 +52,13 @@ public class OrderController {
     @Operation(summary="Lấy ra danh sách đặt hàng của người dùng bằng username")
     public ResponseEntity<List<Order>> getListByUser(@RequestParam("username") String username){
         List<Order> list = orderService.getOrderByUser(username);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/all-detail")
+    @Operation(summary="Lấy ra danh sách đặt hàng của người dùng bằng username")
+    public ResponseEntity<List<OrderDetail>> getAllOrderDetail(){
+        List<OrderDetail> list = orderDetailRepository.findAll();
         return ResponseEntity.ok(list);
     }
 
