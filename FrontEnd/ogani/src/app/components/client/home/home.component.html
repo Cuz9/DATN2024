@@ -21,11 +21,11 @@
 <section class="categories">
     <div class="container">
         <div class="row">
-            <p-carousel [value]="category_items" [numScroll]="1" [numVisible]="4" [circular]="true" [showIndicators]="false" [autoplayInterval]="4000">       
+            <p-carousel [value]="category_items" [numScroll]="1" [numVisible]="4" [circular]="true" [showIndicators]="false" [autoplayInterval]="4000">
                 <ng-template let-item pTemplate="item" >
                     <div class="col">
                         <div class="categories__item set-bg" [ngStyle]="{'background-image': 'url('+ item.src +')'}">
-                            <h5><a href="javascript:void(0)">{{item.title}}</a></h5>
+                            <h5><a href="javascript:void(0)" routerLink="category/{{item.id}}">{{item.title}}</a></h5>
                         </div>
                     </div>
                 </ng-template>
