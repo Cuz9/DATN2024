@@ -1,4 +1,12 @@
-import { Component, OnInit, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  AfterContentChecked,
+  Renderer2,
+  ElementRef,
+  ViewChild
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { faBars, faHeart, faRightFromBracket, faUser, faUserCog } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons'
@@ -57,6 +65,8 @@ export class IndexComponent implements OnInit {
   user: any;
   isAdmin: boolean = false; // Mặc định là false
 
+  @ViewChild('menu') menu: ElementRef | undefined;
+
   constructor(
     public cartService: CartService,
     public wishlistService: WishlistService,
@@ -65,8 +75,14 @@ export class IndexComponent implements OnInit {
     private messageService: MessageService,
     private categoryService: CategoryService,
     public navService: NavbarService,
-    private router: Router) {
-
+    private router: Router,
+    private renderer: Renderer2
+  ) {
+    this.renderer.listen('window', 'click',(e:Event)=>{
+      if(this.menu !== undefined && e.target!==this.menu.nativeElement){
+        this.showDepartment=false;
+      }
+    });
   }
 
   ngOnInit(): void {
