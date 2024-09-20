@@ -45,9 +45,10 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     // this.getListProductByCategory();
-    this.getListProduct();
+    // this.getListProduct();
     this.getListCategoryEnabled();
-    this.getNewestProduct();
+    // this.getNewestProduct();
+    this.getListProductByCategory(this.id)
   }
 
   getListProduct(){
@@ -57,7 +58,7 @@ export class ShopComponent implements OnInit {
         console.log(this.listProduct);
       },error: err =>{
         console.log(err);
-      } 
+      }
     })
   }
 
@@ -67,7 +68,7 @@ export class ShopComponent implements OnInit {
         this.listProduct = res;
       },error: err =>{
         console.log(err);
-      } 
+      }
     })
   }
 
@@ -107,7 +108,7 @@ export class ShopComponent implements OnInit {
     this.cartService.addToCart(item,1);
     this.showSuccess("Đã thêm vào giỏ hàng!")
   }
-  
+
   addToWishList(item: any){
     if(!this.wishlistService.productInWishList(item)){
       this.wishlistService.addToWishList(item);
@@ -122,7 +123,7 @@ export class ShopComponent implements OnInit {
   showError(text: string) {
     this.messageService.add({severity:'error', summary: 'Error', detail: text});
   }
-  
+
   showWarn(text: string) {
     this.messageService.add({severity:'warn', summary: 'Warn', detail: text});
   }
