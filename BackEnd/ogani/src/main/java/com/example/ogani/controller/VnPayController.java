@@ -3,6 +3,7 @@ package com.example.ogani.controller;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.http.HttpClient;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,14 @@ public class VnPayController {
 
     @PostMapping("/submit-order-vnpay")
     public ResponseEntity<String> submitOrder(@RequestParam("amount") int orderTotal,
-            @RequestParam("orderInfo") String orderInfo) {
+            @RequestParam("orderInfo") String orderInfo) throws UnsupportedEncodingException {
         String baseUrl = "http://localhost:8080";
         String vnpayUrl = vnPayService.createOrder(orderTotal, orderInfo, baseUrl);
+        System.out.println(vnpayUrl);
+        String vnpayUrl2 = vnPayService.createOrder2(orderTotal, orderInfo, baseUrl);
+        System.out.println(vnpayUrl);
+        System.out.println("====================");
+        System.out.println(vnpayUrl2);
         return ResponseEntity.ok(vnpayUrl);
     }
 }
