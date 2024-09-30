@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { CategoryService } from 'src/app/_service/category.service';
-import { ImageService } from 'src/app/_service/image.service';
-import { ProductService } from 'src/app/_service/product.service';
+import {Component, OnInit} from '@angular/core';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import {CategoryService} from 'src/app/_service/category.service';
+import {ImageService} from 'src/app/_service/image.service';
+import {ProductService} from 'src/app/_service/product.service';
 
 @Component({
   selector: 'app-product',
@@ -145,13 +145,13 @@ export class ProductComponent implements OnInit {
   }
 
 
-
   createProduct() {
     let data = this.listImageChoosen;
+    this.productForm.imageIds = []
     data.forEach((res: any) => {
       this.productForm.imageIds.push(res.id);
     })
-    const { name, description, price, quantity, categoryId, imageIds } = this.productForm;
+    const {name, description, price, quantity, categoryId, imageIds} = this.productForm;
     console.log(this.productForm);
     this.productService.createProduct(name, description, price, quantity, categoryId, imageIds).subscribe({
       next: res => {
@@ -167,10 +167,11 @@ export class ProductComponent implements OnInit {
 
   updateProduct() {
     let data = this.listImageChoosen;
+    this.productForm.imageIds = []
     data.forEach((res: any) => {
       this.productForm.imageIds.push(res.id);
     })
-    const { id, name, description, price, quantity, categoryId, imageIds } = this.productForm;
+    const {id, name, description, price, quantity, categoryId, imageIds} = this.productForm;
     console.log(this.productForm);
     this.productService.updateProduct(id, name, description, price, quantity, categoryId, imageIds).subscribe({
       next: res => {
@@ -181,7 +182,6 @@ export class ProductComponent implements OnInit {
         this.showError(err.message);
       }
     })
-
   }
 
   onDelete(id: number, name: string) {
@@ -215,7 +215,7 @@ export class ProductComponent implements OnInit {
       accept: () => {
         // Gửi danh sách hình ảnh đã chọn mới lên server để cập nhật thông tin sản phẩm
         const imageIds = this.listImageChoosen.map((image: any) => image.id);
-        const { id, name, description, price, quantity, categoryId } = this.productForm;
+        const {id, name, description, price, quantity, categoryId} = this.productForm;
         this.productService.updateProductImage(id, imageIds).subscribe({
           next: res => {
             // Nếu cập nhật thành công, cập nhật lại danh sách sản phẩm
@@ -269,32 +269,34 @@ export class ProductComponent implements OnInit {
 
 
   showSuccess(text: string) {
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: text });
+    this.messageService.add({severity: 'success', summary: 'Success', detail: text});
   }
+
   showError(text: string) {
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: text });
+    this.messageService.add({severity: 'error', summary: 'Error', detail: text});
   }
 
   showWarn(text: string) {
-    this.messageService.add({ severity: 'warn', summary: 'Warn', detail: text });
+    this.messageService.add({severity: 'warn', summary: 'Warn', detail: text});
   }
 
   deleteImage(image: any) {
-    const productId = this.productForm.id;
+    // const productId = this.productForm.id;
     const imageId = image.id;
-
+    this.listImageChoosen = this.listImageChoosen.filter((item: any) => item.id !== imageId);
+    console.log(this.listImageChoosen)
     // Gọi phương thức deleteProductImage từ ProductService để xóa hình ảnh
-    this.productService.deleteProductImage(productId, imageId).subscribe({
-      next: res => {
-        // Nếu xóa thành công, cập nhật lại danh sách ảnh
-        this.listImageChoosen = this.listImageChoosen.filter((item: any) => item.id !== imageId);
-        this.showSuccess("Hình ảnh sản phẩm đã được xóa!");
-      },
-      error: err => {
-        // Nếu có lỗi, hiển thị thông báo lỗi
-        // this.showError(err.message);
-      }
-    });
+    // this.productService.deleteProductImage(productId, imageId).subscribe({
+    //   next: res => {
+    //     // Nếu xóa thành công, cập nhật lại danh sách ảnh
+    //     this.listImageChoosen = this.listImageChoosen.filter((item: any) => item.id !== imageId);
+    //     this.showSuccess("Hình ảnh sản phẩm đã được xóa!");
+    //   },
+    //   error: err => {
+    //     // Nếu có lỗi, hiển thị thông báo lỗi
+    //     // this.showError(err.message);
+    //   }
+    // });
   }
 
   updateImage() {
@@ -302,7 +304,7 @@ export class ProductComponent implements OnInit {
     const imageIds = this.listImageChoosen.map((image: any) => image.id);
 
     // Lấy thông tin sản phẩm cần cập nhật
-    const { id, name, description, price, quantity, categoryId } = this.productForm;
+    const {id, name, description, price, quantity, categoryId} = this.productForm;
 
     // Gọi phương thức cập nhật hình ảnh từ ProductService
     this.productService.updateProductImage(id, imageIds).subscribe({
