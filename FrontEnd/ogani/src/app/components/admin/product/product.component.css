@@ -12,3 +12,8 @@
   top: 0;
   right: 0;
 }
+
+.choosen {
+  background-color: #20c9a6;
+  transform: scale(0.9);
+}
