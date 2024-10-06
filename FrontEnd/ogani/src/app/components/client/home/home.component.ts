@@ -49,19 +49,19 @@ export class HomeComponent implements OnInit {
 
   category_items = [
     {
-      id: 1,
+      id: 3,
       src: 'assets/image/cat-1.jpg',
       alt: '',
       title: 'Trái cây'
     },
     {
-      id: 2,
+      id: 10,
       src: 'assets/image/cat-2.jpg',
       alt: '',
-      title: 'Đồ khô'
+      title: 'Yến mạch'
     },
     {
-      id: 3,
+      id: 2,
       src: 'assets/image/cat-3.jpg',
       alt: '',
       title: 'Rau củ'
@@ -70,10 +70,10 @@ export class HomeComponent implements OnInit {
       id: 4,
       src: 'assets/image/cat-4.jpg',
       alt: '',
-      title: 'Nước ép'
+      title: 'Quả mọng tươi'
     },
     {
-      id: 5,
+      id: 1,
       src: 'assets/image/cat-5.jpg',
       alt: '',
       title: 'Thịt các loại'
@@ -81,9 +81,9 @@ export class HomeComponent implements OnInit {
   ];
 
   constructor(
-    private productSerive: ProductService, 
-    private cartService: CartService, 
-    private wishlistService: WishlistService, 
+    private productSerive: ProductService,
+    private cartService: CartService,
+    private wishlistService: WishlistService,
     private messageService: MessageService,
     private navService: NavbarService
   ) { }
@@ -129,7 +129,7 @@ export class HomeComponent implements OnInit {
   showSuccess(text: string) {
     this.messageService.add({ severity: 'success', summary: 'Thành công', detail: text });
   }
-  
+
   showError(text: string) {
     this.messageService.add({ severity: 'error', summary: 'Thất bại', detail: text });
   }
