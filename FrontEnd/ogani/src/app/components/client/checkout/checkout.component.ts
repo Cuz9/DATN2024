@@ -85,6 +85,7 @@ export class CheckoutComponent implements OnInit {
         this.placeOrderByCash();
         break;
       case 'banking':
+        this.placeOrderByCash();
         this.placeOrderVnPay();
         break;
     }
@@ -97,6 +98,7 @@ export class CheckoutComponent implements OnInit {
       orderDetail.price = res.price;
       orderDetail.quantity = res.quantity;
       orderDetail.subTotal = res.subTotal;
+      orderDetail.id = res.id;
       this.listOrderDetail.push(orderDetail);
     })
 
@@ -135,7 +137,7 @@ export class CheckoutComponent implements OnInit {
 
     sessionStorage.setItem('listOrderDetail', JSON.stringify(this.listOrderDetail));
     sessionStorage.setItem('orderForm', JSON.stringify(this.orderForm));
-    
+
     // Tạo một HttpParams object chứa thông tin đơn hàng
     let params = new HttpParams();
     params = params.set('amount', this.cartService.getTotalPrice());

@@ -4,5 +4,5 @@ export class OrderDetail {
     price !: number;
     quantity !: number;
     subTotal !:number;
-
+    id !: number;
 }

@@ -3,7 +3,10 @@ package com.example.ogani.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
+import com.example.ogani.entity.Product;
+import com.example.ogani.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -32,6 +35,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void placeOrder(CreateOrderRequest request) {
         Order order = new Order();
@@ -57,7 +63,12 @@ public class OrderServiceImpl implements OrderService {
             orderDetail.setOrder(order);
             totalPrice += orderDetail.getSubTotal();
             orderDetailRepository.save(orderDetail);
-            
+            Optional<Product> optional = productRepository.findById(rq.getId());
+            if (optional.isPresent()) {
+                Product product = optional.get();
+                product.setQuantity(product.getQuantity() - rq.getQuantity());
+                productRepository.save(product);
+            }
         }
         order.setTotalPrice(totalPrice);
         order.setUser(user);
