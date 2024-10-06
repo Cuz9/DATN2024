@@ -49,6 +49,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListOrder()
+    let excel = document.getElementById("excel")
+    if (excel !== null) {
+      excel.classList.remove("hide")
+      excel.classList.add("show")
+    }
   }
 
 
@@ -74,5 +79,21 @@ export class DashboardComponent implements OnInit {
 
   export() {
     this.exportService.exportExcel(this.listOrder, 'listOrder');
+  }
+
+  hide() {
+    let excel = document.getElementById("excel")
+    if (excel !== null) {
+      excel.classList.remove("show")
+      excel.classList.add("hide")
+    }
+  }
+
+  show() {
+    let excel = document.getElementById("excel")
+    if (excel !== null) {
+      excel.classList.remove("hide")
+      excel.classList.add("show")
+    }
   }
 }
